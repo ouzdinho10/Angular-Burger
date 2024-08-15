@@ -1,0 +1,110 @@
+<!-- admin.component.html -->
+
+<div class="container">
+    <!-- Bouton "+ Ajouter" -->
+    <div *ngIf="isAdmin" class="form-group">
+      <button class="btn btn-primary" (click)="openAddBurgerModal()">
+        <i class="fa fa-plus"></i> Ajouter
+      </button>
+    </div>
+  
+    <!-- Liste des burgers -->
+    <div class="card mt-3">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nom</th>
+              <th>Description</th>
+              <th>Prix</th>
+              <th>Status</th>
+              <th>Image</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let burger of burgers">
+              <td>{{ burger.id }}</td>
+              <td>{{ burger.nom }}</td>
+              <td>{{ burger.description }}</td>
+              <td>{{ burger.prix }}</td>
+              <td>{{ burger.status }}</td>
+              <td>
+                <img [src]="getImageUrl(burger.image)" alt="{{ burger.nom }}" width="60" height="60" class="img-fluid">
+              </td>
+              <td class="d-flex flex-row justify-content-center">
+                <button class="btn btn-warning mr-2" (click)="editBurger(burger)">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button class="btn btn-danger" (click)="deleteBurger(burger.id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Pagination -->
+<nav *ngIf="totalPages > 1" aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="changePage(currentPage - 1)" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </button>
+    </li>
+    <li class="page-item" *ngFor="let page of generatePageArray(totalPages)" [class.active]="page === currentPage">
+      <button class="page-link" (click)="changePage(page)">{{ page }}</button>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <button class="page-link" (click)="changePage(currentPage + 1)" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+  
+    <!-- Modal Ajouter Burger -->
+    <div class="modal fade" id="addBurgerModal" name="addBurgerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ajouter un burger</h5>
+            <button type="button" class="btn-close" (click)="closeAddBurgerModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form (submit)="addBurger()">
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" [(ngModel)]="newBurger.nom" name="nom" class="form-control" placeholder="Nom" required>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea [(ngModel)]="newBurger.description" name="description" class="form-control" placeholder="Description" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="prix">Prix</label>
+                <input type="number" [(ngModel)]="newBurger.prix" name="prix" class="form-control" placeholder="Prix" required>
+              </div>
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select [(ngModel)]="newBurger.status" name="status" class="form-control" required>
+                  <option value="" disabled>Veuillez choisir un status</option>
+                  <option value="active">Active</option>
+                  <option value="archived">Archivé</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" (change)="onFileSelected($event)" name="image" class="form-control" accept="image/*" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

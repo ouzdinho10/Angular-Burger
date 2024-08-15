@@ -1,0 +1,32 @@
+<h2>Register</h2>
+<form (ngSubmit)="register()">
+  <div>
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" [(ngModel)]="user.nom" name="nom" required>
+  </div>
+  <div>
+    <label for="prenom">Prénom:</label>
+    <input type="text" id="prenom" [(ngModel)]="user.prenom" name="prenom" required>
+  </div>
+  <div>
+    <label for="tel">Téléphone:</label>
+    <input type="text" id="tel" [(ngModel)]="user.tel" name="tel" required>
+  </div>
+  <div>
+    <label for="ville">Ville:</label>
+    <input type="text" id="ville" [(ngModel)]="user.ville" name="ville" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="user.password" name="password" required>
+  </div>
+  <div>
+    <label for="password_confirmation">Confirm Password:</label>
+    <input type="password" id="password_confirmation" [(ngModel)]="user.password_confirmation" name="password_confirmation" required>
+  </div>
+  <button type="submit">Register</button>
+</form>

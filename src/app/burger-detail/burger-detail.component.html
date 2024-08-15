@@ -1,0 +1,25 @@
+<div class="row my-4" *ngIf="burger">
+  <div class="col-md-8 offset-md-2">
+    <div class="card border border-primary rounded">
+      <h3 class="card-header bg-primary text-white">{{ burger.nom }}</h3>
+      <div class="card-img-top text-center p-2">
+        <img [src]="getImageUrl(burger.image)" alt="{{ burger.nom }}" class="img-fluid rounded" style="max-height: 300px; max-width: 100%; object-fit: cover;">
+      </div>
+      <div class="card-body">
+        <p class="text-muted">Description: {{ burger.description }}</p>
+        <p class="text-muted">Prix: {{ burger.prix }} FCFA</p>
+        <div *ngIf="burger.status === 'active'">
+          <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+            <form *ngIf="buttonLabel" (ngSubmit)="onActionButtonClick()">
+              <button type="submit" class="btn btn-primary w-100 m-2">{{ buttonLabel }}</button>
+            </form>
+          </ng-container>
+          <ng-template #notLoggedIn>
+            <a routerLink="/login" class="btn btn-primary w-100 m-2">Réserver</a>
+          </ng-template>
+        </div>
+        <span *ngIf="burger.status !== 'active'" class="badge bg-warning text-dark">Réservé</span>
+      </div>
+    </div>
+  </div>
+</div>

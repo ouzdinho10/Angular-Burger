@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.header {
+    transition: background-color 0.3s ease;
+  }
+  
+  .header:hover {
+    background-color: #007bff;
+  }
+  
+  .card-header {
+    font-weight: bold;
+  }
+  
+  .pagination .page-link {
+    color: #007bff;
+  }
+  
+  .pagination .page-link:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .media-body h4 {
+    transition: color 0.3s ease;
+  }
+  
+  .media-body h4 a:hover {
+    color: #007bff;
+  }
+
+  .card-img-top img {
+    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
+}
+
+.media img {
+    border-radius: 50%;
+}
+
+.pagination .page-link {
+    color: #007bff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.bg-primary {
+    background-color: #007bff !important;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}

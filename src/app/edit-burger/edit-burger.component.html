@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row my-5">
+      <div class="col-md-8 mx-auto">
+        <div class="card bg-light">
+          <h3 class="card-header">Modifier un burger</h3>
+          <div class="card-body">
+            <form (ngSubmit)="updateBurger()" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" class="form-control" placeholder="Nom" [(ngModel)]="burger.nom" required>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" class="form-control" placeholder="Description" [(ngModel)]="burger.description" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select name="status" class="form-control" [(ngModel)]="burger.status" required>
+                  <option value="" selected disabled>Veuillez choisir un status</option>
+                  <option value="active" [selected]="burger.status === 'Active'">Active</option>
+                  <option value="archived" [selected]="burger.status === 'Archived'">Archived</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="prix">Prix</label>
+                <input type="number" name="prix" class="form-control" placeholder="Prix" [(ngModel)]="burger.prix" required>
+              </div>
+              <div class="form-group">
+                <img [src]="burger.image" width="100" height="100" alt="Burger image" class="img-fluid">
+              </div>
+              <div class="form-group">
+                <label for="image">Photo</label>
+                <input type="file" name="image" class="form-control" (change)="onFileSelected($event)">
+              </div>
+              <button type="submit" class="btn btn-primary">Modifier</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
